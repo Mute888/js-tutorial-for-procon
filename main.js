@@ -12,9 +12,19 @@ let oyamaLogo = new CanvasComponents({
   position: new Vector2(GameArea.x / 2, GameArea.y / 4),
 });
 oyamaLogo.update = function () {
-  this.rotate += 10;
-  this.position.x +=3
-  this.position.y += this.motion.y;
+  this.rotate += 70;
+  if (keyInput.IsPressed("ArrowLeft")){
+    this.position.x -= 20;
+  }
+  if (keyInput.IsPressed("ArrowRight")){
+    this.position.x += 20;
+  }
+  if (keyInput.IsPressed("ArrowUp")){
+    this.position.y -= 20;
+  }
+  if (keyInput.IsPressed("ArrowDown")){
+    this.position.y += 20;
+  }
 };
 
 function update() {
@@ -27,5 +37,5 @@ const GameLoop = new GameLoopManager(() => {
   MainContext.clearRect(0, 0, GameArea.x, GameArea.y);
   oyamaLogo.render();
   oyamaLogo.update();
-}, 30);
+}, 200);
 GameLoop.start();
